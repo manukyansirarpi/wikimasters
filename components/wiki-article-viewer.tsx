@@ -4,7 +4,7 @@ import { Calendar, ChevronRight, Edit, Home, Trash, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
-// import { deleteArticleForm } from "@/app/actions/articles";
+import { deleteArticleForm } from "@/app/actions/articles";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -21,13 +21,14 @@ interface ViewerArticle {
 interface WikiArticleViewerProps {
   article: ViewerArticle;
   canEdit?: boolean;
-  pageviews?: number | null;
 }
 
 export default function WikiArticleViewer({
   article,
   canEdit = false,
 }: WikiArticleViewerProps) {
+  // ...existing code...
+
   // Format date for display
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -70,9 +71,7 @@ export default function WikiArticleViewer({
               <Calendar className="h-4 w-4 mr-1" />
               <span>{formatDate(article.createdAt)}</span>
             </div>
-            <div className="flex items-center">
-              <Badge variant="secondary">Article</Badge>
-            </div>
+            <Badge variant="secondary">Article</Badge>
           </div>
         </div>
 
@@ -87,9 +86,7 @@ export default function WikiArticleViewer({
             </Link>
 
             {/* Delete form calls the server action wrapper */}
-            <form
-            //  action={deleteArticleForm}
-            >
+            <form action={deleteArticleForm}>
               <input type="hidden" name="id" value={String(article.id)} />
               <Button
                 type="submit"
@@ -232,9 +229,7 @@ export default function WikiArticleViewer({
               </Button>
             </Link>
 
-            <form
-            //  action={deleteArticleForm}
-            >
+            <form action={deleteArticleForm}>
               <input type="hidden" name="id" value={String(article.id)} />
               <Button
                 type="submit"
