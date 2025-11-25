@@ -1,17 +1,20 @@
 "use server";
 
-import { stackServerApp } from "@/stack/server";
-import { articles } from "@/db/schema";
-import db from "@/db";
 import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import { authorizeUserToEditArticle } from "@/db/authz";
+import db from "@/db/index";
+import { articles } from "@/db/schema";
+import { stackServerApp } from "@/stack/server";
+
+// Server actions for articles (stubs)
+// TODO: Replace with real database operations when ready
 
 export type CreateArticleInput = {
   title: string;
   content: string;
   authorId: string;
-  imageUrl: string;
+  imageUrl?: string;
 };
 
 export type UpdateArticleInput = {
@@ -46,6 +49,10 @@ export async function updateArticle(id: string, data: UpdateArticleInput) {
   const user = await stackServerApp.getUser();
   if (!user) {
     throw new Error("❌ Unauthorized");
+  }
+
+  if (!(await authorizeUserToEditArticle(user.id, +id))) {
+    throw new Error("❌ Forbidden");
   }
 
   console.log("📝 updateArticle called:", { id, ...data });
