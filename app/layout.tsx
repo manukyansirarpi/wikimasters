@@ -32,10 +32,8 @@ export default function RootLayout({
       >
         <StackProvider app={stackClientApp}>
           <StackTheme>
-            <div>
-              <NavBar />
-              {children}
-            </div>
+            <NavBar />
+            {children}
           </StackTheme>
         </StackProvider>
       </body>
