@@ -307,7 +307,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Full-Stack Developer | Next.js Specialist | TypeScript Enthusiast
 
 - GitHub: [@manukyansirarpi](https://github.com/manukyansirarpi)
-- Portfolio: [Portfolio URL]https://www.applicaapp.com/
+- Portfolio: [Portfolio URL](https://www.applicaapp.com/)
 - LinkedIn: [[LinkedIn]](https://www.linkedin.com/in/sirarpi-manukyan/)
 
 ---
